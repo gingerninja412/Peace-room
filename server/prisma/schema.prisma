@@ -32,9 +32,10 @@ model Admins {
 }
 
 model Nominations {
-  id      Int    @id @default(autoincrement())
-  author  String
-  nominee String
-  content String
-  votes   Int
+  id       Int    @id @default(autoincrement())
+  author   String
+  nominee  String
+  content  String
+  votes    Int
+  approved Boolean
 }
