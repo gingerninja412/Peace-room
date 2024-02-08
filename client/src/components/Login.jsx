@@ -37,9 +37,9 @@ function Login() {
             <div id="form-item">
               <RadioGroup className='font-Zeyada'>
                 <Stack direction='row'>
-                  <Radio value='1' size="lg">Student</Radio>
-                  <Radio value='2' size="lg">Teacher</Radio>
-                  <Radio value='3' size="lg">Admin</Radio>
+                  <Radio value='student' size="lg">Student</Radio>
+                  <Radio value='teacher' size="lg">Teacher</Radio>
+                  <Radio value='admin' size="lg">Admin</Radio>
                 </Stack>
               </RadioGroup>
             </div>

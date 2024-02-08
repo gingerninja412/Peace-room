@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Zeyada: ['Zeyada', 'sans-serif']
+        Zeyada: ['"Protest Riot"', 'sans-serif']
       }
     },
   },
