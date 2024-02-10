@@ -3,11 +3,12 @@ import { Radio, RadioGroup } from '@chakra-ui/react'
 import { Stack } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [show, setShow] = useState(false)
   const showClick = () => setShow(!show)
-
+  const navigate = useNavigate()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [userType, setUserType] = useState("")
@@ -31,6 +32,10 @@ function Login() {
     }).catch(error => {
       console.log(error)
     })
+  }
+
+  function sendToRegister () {
+    navigate('/ACType')
   }
 
   return ( 
@@ -63,14 +68,14 @@ function Login() {
                   value={password}
                 />
                 <InputRightElement width='4.5rem'>
-                  <Button h='1.75rem' size='sm' onClick={showClick}>
+                  <Button h='1.75rem' size='sm' onClick={showClick} colorScheme='blue' className='font-Zeyada tracking-widest'>
                     {show ? 'Hide' : 'Show'}
-                  </Button>
+                  </Button >
                 </InputRightElement>
               </InputGroup>
             </div>
             <div id="form-item">
-              <RadioGroup className='font-Zeyada' onChange={setUserType} value={userType}>
+              <RadioGroup className='font-Zeyada' onChange={setUserType} value={userType}  colorScheme='blue'>
                 <Stack direction='row'>
                   <Radio value='Students' size="lg">Student</Radio>
                   <Radio value='Teachers' size="lg">Teacher</Radio>
@@ -78,10 +83,10 @@ function Login() {
                 </Stack>
               </RadioGroup>
             </div>
-            <Button className='font-Zeyada text-2xl' type="submit">Log in</Button>
+            <Button className='font-Zeyada text-2xl tracking-widest' type="submit"  colorScheme='blue'>Log in</Button>
             <div className='flex justify-start items-center flex-col'>
               <label className='font-Zeyada text-2xl'>Don't have an account?</label>
-              <Button className='font-Zeyada text-2xl'>Register</Button>
+              <Button className='font-Zeyada text-2xl tracking-widest' type='button' onClick={sendToRegister} colorScheme='blue'>Register</Button>
             </div>
           </form>
         </div>
