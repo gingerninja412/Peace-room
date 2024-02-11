@@ -55,6 +55,13 @@ function TeacherRegister() {
         usedSchool = newSchoolValue
       }
     }
+
+    axios.post("http://localhost:3001/teacher/add", {
+      lastName: lastName,
+      email: email,
+      password: password,
+      school: school
+    })
   }
 
   return ( 
