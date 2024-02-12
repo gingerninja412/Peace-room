@@ -1,6 +1,7 @@
 import { Input, InputGroup, InputRightElement,Button } from '@chakra-ui/react'
 import { useState } from 'react';
 import { Select } from '@chakra-ui/react';
+import axios from 'axios'
 
 function TeacherRegister() {
   const [show, setShow] = useState(false)
@@ -60,8 +61,12 @@ function TeacherRegister() {
       lastName: lastName,
       email: email,
       password: password,
-      school: school
-    })
+      school: usedSchool
+    }).then(res => {
+      console.log(res)
+    }).catch(error => [
+      console.log(error)
+    ])
   }
 
   return ( 

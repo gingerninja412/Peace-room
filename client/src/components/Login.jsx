@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//TODO redo the header bar
+
 function Login() {
   const [show, setShow] = useState(false)
   const showClick = () => setShow(!show)
