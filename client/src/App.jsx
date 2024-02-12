@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import AccountType from "./components/AccountType";
 import StudentRegister from "./components/StudentRegister";
 import TeacherRegister from "./components/TeacherRegister";
+import Home from "./components/Home";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/ACType" element={<AccountType />} />
             <Route path="/StudentRegister" element={<StudentRegister />} />
             <Route path="/TeacherRegister" element={<TeacherRegister />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
