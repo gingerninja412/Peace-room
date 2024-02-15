@@ -31,6 +31,7 @@ function Login() {
       password: password
     }).then(res => {
       console.log(res)
+      navigate('/home')
     }).catch(error => {
       console.log(error)
     })
