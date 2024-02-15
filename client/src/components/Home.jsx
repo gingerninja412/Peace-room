@@ -1,8 +1,12 @@
 import logo1 from '../assets/WorldECitizens.png'
 import logo2 from '../assets/GlobalSchoolAlliance.png'
 import peaceRoom from '../assets/OutsideViewOfPeaceRoom.jpg'
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate()
+
+
   return ( 
     <div className="grid grid-cols-4 h-full p-4">
       <div className="flex justify-around items-center col-span-4">
@@ -20,8 +24,8 @@ function Home() {
       </div>
       <div className='h-full col-span-1 border-sky-600 border-8 border-solid p-4 flex justify-around items-center flex-col rounded-md'>
         <h2 className='font-Zeyada text-3xl underline decoration-sky-600'>Resources for all</h2>
-        <h3 className='font-Zeyada text-2xl'>Nomination help sheet</h3>
-        <h3 className='font-Zeyada text-2xl'>History</h3>
+        <h3 className='font-Zeyada text-2xl' >Nomination help sheet</h3>
+        <h3 className='font-Zeyada text-2xl' onClick={() => navigate("/history")}>History</h3>
         <h3 className='font-Zeyada text-2xl'>Peace Room Song</h3>
       </div>
       <div className='col-span-2 p-4'>
