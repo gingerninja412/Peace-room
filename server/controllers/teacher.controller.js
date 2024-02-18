@@ -42,4 +42,18 @@ teacherController.login = async (req, res) => {
   }
 }
 
+teacherController.getSchools = async (req, res) => {
+  try {
+    const schools = await prisma.teachers.findMany({
+      select: {
+        School: true
+      },
+      distinct: ["School"]
+    })
+    res.status(200).send(schools)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = teacherController

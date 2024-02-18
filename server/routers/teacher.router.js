@@ -6,6 +6,7 @@ const teacherRouter = express.Router()
 teacherRouter.post("/add", teacherController.add)
 teacherRouter.post("/login", teacherController.login)
 
-teacherRouter.get("/logout/:studentId", teacherController.logout)
+teacherRouter.get("/logout/:teacherID", teacherController.logout)
+teacherRouter.get("/getSchools", teacherController.getSchools)
 
 module.exports = teacherRouter

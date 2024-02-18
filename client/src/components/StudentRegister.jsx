@@ -1,10 +1,20 @@
 import { Input, InputGroup, InputRightElement,Button } from '@chakra-ui/react'
 import { Select } from '@chakra-ui/react'
 import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios'
 
 function StudentRegister() {
   const [show, setShow] = useState(false)
   const showClick = () => setShow(!show)
+  const [schools, setSchools] = useState([])
+  useEffect(() => {
+    axios.get("http://localhost:3001/teacher/getSchools").then(res => {
+      setSchools(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  })
 
   return ( 
     <div className="flex justify-center items-center h-full">
@@ -55,9 +65,11 @@ function StudentRegister() {
           </div>
           <div className='flex justify-start items-center flex-col'>
             <Select placeholder='Select a school'>
-              <option value='option1'>School 1</option>
-              <option value='option2'>School 2</option>
-              <option value='option3'>School 3</option>
+              {schools.map(item => {
+                return (
+                  <option value={item.School}>{item.School}</option>
+                )
+              })}
             </Select>
           </div>
           <div className='flex justify-start items-center flex-col'>
