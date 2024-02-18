@@ -4,6 +4,8 @@ import { Stack } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { setTeacher } from '../utils/slices/teacherSlice';
 
 //TODO redo the header bar
 
@@ -14,6 +16,8 @@ function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [userType, setUserType] = useState("")
+  const teacher = useSelector(state => state.teacher.value)
+  const dispatch = useDispatch()
 
   function sendData(e) {
     e.preventDefault()
@@ -31,6 +35,9 @@ function Login() {
       password: password
     }).then(res => {
       console.log(res)
+      if(userType == "Teachers") {
+        dispatch(setTeacher(true))
+      }
       navigate('/home')
     }).catch(error => {
       console.log(error)

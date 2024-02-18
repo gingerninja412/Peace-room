@@ -2,10 +2,12 @@ import logo1 from '../assets/WorldECitizens.png'
 import logo2 from '../assets/GlobalSchoolAlliance.png'
 import peaceRoom from '../assets/OutsideViewOfPeaceRoom.jpg'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 function Home() {
   const navigate = useNavigate()
-
+  const teacher = useSelector(state => state.teacher.value)
 
   return ( 
     <div className="grid grid-cols-4 h-full p-4">
@@ -31,6 +33,16 @@ function Home() {
       <div className='col-span-2 p-4'>
         <img src={peaceRoom} />
       </div>
+      {teacher ? 
+      <div className='border-sky-600 border-8 border-solid p-4 h-full rounded-md flex justify-around items-center flex-col col-span-1'>
+        <h2 className='font-Zeyada text-3xl underline decoration-sky-600'>Teacher Resources</h2>
+        <h3 className='font-Zeyada text-2xl' >Welcome video</h3>
+        <h3 className='font-Zeyada text-2xl' >Debate Presentation</h3>
+        <h3 className='font-Zeyada text-2xl' >Teacher Center</h3>
+        <h3 className='font-Zeyada text-2xl' >Nomination cards</h3>
+        <h3 className='font-Zeyada text-2xl' >Lesson plans</h3>
+      </div>
+      :null}
       <div className='col-span-2 h-full border-sky-600 border-8 border-solid col-start-2 flex justify-center items-center rounded-md'>
         <h2 className='font-Zeyada text-2xl'>Enter the peace room</h2>
       </div>
