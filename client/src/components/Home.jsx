@@ -36,7 +36,7 @@ function Home() {
       {teacher ? 
       <div className='border-sky-600 border-8 border-solid p-4 h-full rounded-md flex justify-around items-center flex-col col-span-1'>
         <h2 className='font-Zeyada text-3xl underline decoration-sky-600'>Teacher Resources</h2>
-        <h3 className='font-Zeyada text-2xl' >Welcome video</h3>
+        <h3 className='font-Zeyada text-2xl' onClick={() => navigate("/wellcomeVideo")}>Welcome video</h3>
         <h3 className='font-Zeyada text-2xl' >Debate Presentation</h3>
         <h3 className='font-Zeyada text-2xl' >Teacher Center</h3>
         <h3 className='font-Zeyada text-2xl' >Nomination cards</h3>
