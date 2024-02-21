@@ -40,7 +40,7 @@ function Home() {
         <h3 className='font-Zeyada text-2xl' >Debate Presentation</h3>
         <h3 className='font-Zeyada text-2xl' >Teacher Center</h3>
         <h3 className='font-Zeyada text-2xl' >Nomination cards</h3>
-        <h3 className='font-Zeyada text-2xl' >Lesson plans</h3>
+        <h3 className='font-Zeyada text-2xl'onClick={() => navigate("/lessonPlans")} >Lesson plans</h3>
       </div>
       :null}
       <div className='col-span-2 h-full border-sky-600 border-8 border-solid col-start-2 flex justify-center items-center rounded-md'>
