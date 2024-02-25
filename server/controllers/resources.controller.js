@@ -47,4 +47,15 @@ resourceController.biography = async (req, res) => {
   })
 }
 
+resourceController.nomination = async (req, res) => {
+  res.download(pathToDownloadsFolder + 'NominationCards.docx', "NominationCards.docx", function (err){
+    if(err) {
+      console.log(err)
+      res.status(400).send("didn't work")
+    } else {
+      console.log("all good")
+    }
+  })
+}
+
 module.exports = resourceController
