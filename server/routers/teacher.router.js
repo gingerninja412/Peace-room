@@ -10,5 +10,6 @@ teacherRouter.post("/addClass", passport.authenticate('jwt', {session: false}), 
 
 teacherRouter.get("/logout/:teacherID", teacherController.logout)
 teacherRouter.get("/getSchools", teacherController.getSchools)
+teacherRouter.get("/getClasses", teacherController.getClass)
 
 module.exports = teacherRouter

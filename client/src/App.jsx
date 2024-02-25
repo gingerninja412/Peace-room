@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import History from "./components/History";
 import WelcomeVideo from "./components/WelcomeVideo";
 import LessonPlans from "./components/LessonPlans";
+import TeacherCenter from "./components/TeacherCenter";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/wellcomeVideo" element={<WelcomeVideo />} />
             <Route path="/lessonPlans" element={<LessonPlans />} />
+            <Route path="/teacherCenter" element={<TeacherCenter />} /> 
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

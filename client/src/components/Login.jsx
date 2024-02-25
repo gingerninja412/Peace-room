@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { setTeacher } from '../utils/slices/teacherSlice';
+import { setUser } from '../utils/slices/userSlice';
 
 //TODO redo the header bar
 
@@ -17,6 +18,7 @@ function Login() {
   const [password, setPassword] = useState("")
   const [userType, setUserType] = useState("")
   const teacher = useSelector(state => state.teacher.value)
+  const user = useSelector(state => state.user.value)
   const dispatch = useDispatch()
 
   function sendData(e) {
@@ -29,15 +31,17 @@ function Login() {
     } else if(userType == "Admins") {
       link = "http://localhost:3001/admin/login"
     }
-    console.log(link)
     axios.post(link, {
       username: username,
       password: password
+    },{
+      withCredentials: true
     }).then(res => {
       console.log(res)
       if(userType == "Teachers") {
         dispatch(setTeacher(true))
       }
+      dispatch(setUser(username))
       navigate('/home')
     }).catch(error => {
       console.log(error)

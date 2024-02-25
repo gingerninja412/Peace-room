@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const teacherSlice = createSlice({
   name: "teacher",
   initialState: {
-    value: false
+    value: false,
   },
   reducers: {
     setTeacher: (state, action) => {
-      state.value = action.payload
-    }
-  }
-})
+      state.value = action.payload;
+    },
+  },
+});
 
-export const {setTeacher} = teacherSlice.actions
+export const { setTeacher } = teacherSlice.actions;
 
-export default teacherSlice.reducer
+export default teacherSlice.reducer;

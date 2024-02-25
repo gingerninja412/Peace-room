@@ -9,11 +9,12 @@ function LessonPlans() {
       const url = URL.createObjectURL(res.data)
       const a = document.createElement('a')
       a.href = url
-      a.download = "The Debate.doc"
+      a.download = `${item}.doc`
       a.style.display ='none'
       document.body.appendChild(a)
       a.click()
       a.remove()
+      console.log(res)
     }).catch(err => {
       console.log(err)
     })

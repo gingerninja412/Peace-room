@@ -3,11 +3,31 @@ import logo2 from '../assets/GlobalSchoolAlliance.png'
 import peaceRoom from '../assets/OutsideViewOfPeaceRoom.jpg'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 function Home() {
   const navigate = useNavigate()
   const teacher = useSelector(state => state.teacher.value)
+
+  function downloadNominationCards() {
+    axios.post("http://localhost:3001/resources/nominationCards", {
+      responseType: "blob"
+    }).then(res => {
+      const url = URL.createObjectURL(res.data)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `nominationCards.docx`
+      a.style.display ='none'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
 
   return ( 
     <div className="grid grid-cols-4 h-full p-4">
@@ -38,8 +58,8 @@ function Home() {
         <h2 className='font-Zeyada text-3xl underline decoration-sky-600'>Teacher Resources</h2>
         <h3 className='font-Zeyada text-2xl' onClick={() => navigate("/wellcomeVideo")}>Welcome video</h3>
         <h3 className='font-Zeyada text-2xl' >Debate Presentation</h3>
-        <h3 className='font-Zeyada text-2xl' >Teacher Center</h3>
-        <h3 className='font-Zeyada text-2xl' >Nomination cards</h3>
+        <h3 className='font-Zeyada text-2xl' onClick={() => navigate("/teacherCenter")}>Teacher Center</h3>
+        <h3 className='font-Zeyada text-2xl' onClick={downloadNominationCards}>Nomination cards</h3>
         <h3 className='font-Zeyada text-2xl'onClick={() => navigate("/lessonPlans")} >Lesson plans</h3>
       </div>
       :null}

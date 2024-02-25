@@ -70,9 +70,28 @@ teacherController.getSchools = async (req, res) => {
 
 teacherController.addClass = async (req, res) => {
   try {
-    console.log(req.user)
+    await prisma.teacherClasses.create({
+      data: {
+        Teacher: req.user,
+        Class: req.body.class
+      }
+    })
+    res.status(200).send({status: 200})
   } catch (error) {
     console.log(error)
+  }
+}
+
+teacherController.getClass = async (req, res) => {
+  try {
+    const classes = await prisma.teacherClasses.findMany({
+      where: {
+        Teacher: req.user
+      }
+    })
+    res.status(200).send(classes)
+  } catch (error) {
+    
   }
 }
 
