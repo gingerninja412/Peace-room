@@ -11,7 +11,7 @@ function Home() {
   const teacher = useSelector(state => state.teacher.value)
 
   function downloadNominationCards() {
-    axios.post("http://localhost:3001/resources/nominationCards", {
+    axios.get("http://localhost:3001/resources/Nomination", {
       responseType: "blob"
     }).then(res => {
       const url = URL.createObjectURL(res.data)

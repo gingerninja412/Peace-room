@@ -26,7 +26,9 @@ function Login() {
     let link = ""
     if(userType == "Students") {
       link = "http://localhost:3001/student/login"
+      window.sessionStorage.setItem("teacher", false);
     } else if(userType == "Teachers") {
+      window.sessionStorage.setItem("teacher", true)
       link = "http://localhost:3001/teacher/login"
     } else if(userType == "Admins") {
       link = "http://localhost:3001/admin/login"
@@ -42,6 +44,7 @@ function Login() {
         dispatch(setTeacher(true))
       }
       dispatch(setUser(username))
+      window.sessionStorage.setItem("user", username)
       navigate('/home')
     }).catch(error => {
       console.log(error)
