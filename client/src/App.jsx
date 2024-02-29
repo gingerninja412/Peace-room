@@ -16,9 +16,10 @@ import { setTeacher } from "./utils/slices/teacherSlice";
 import { setUser } from "./utils/slices/userSlice";
 
 function App() {
-
+  //hooks
   const dispatch = useDispatch()
 
+  //redux states
   const teacher = useSelector((state) => state.teacher.value);
   const user = useSelector((state) => state.user.value);
 

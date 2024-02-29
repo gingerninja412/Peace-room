@@ -16,10 +16,11 @@ model Teachers {
 }
 
 model Students {
-  id     Int    @id @default(autoincrement())
-  name   String
-  school String
-  class  String
+  id       Int     @id @default(autoincrement())
+  name     String
+  school   String
+  class    String
+  password String?
 }
 
 model Admins {
@@ -39,7 +40,8 @@ model Nominations {
 }
 
 model TeacherClasses {
-  ID      Int    @id @default(autoincrement())
+  ID      Int     @id @default(autoincrement())
   Teacher String
   Class   String
+  school  String?
 }

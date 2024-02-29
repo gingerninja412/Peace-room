@@ -12,15 +12,19 @@ import { setUser } from '../utils/slices/userSlice';
 
 function Login() {
   const [show, setShow] = useState(false)
-  const showClick = () => setShow(!show)
-  const navigate = useNavigate()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [userType, setUserType] = useState("")
+
+  //hooks
+  const navigate = useNavigate()
+  
+  //redux states
   const teacher = useSelector(state => state.teacher.value)
   const user = useSelector(state => state.user.value)
   const dispatch = useDispatch()
-
+  
+  //utility functions
   function sendData(e) {
     e.preventDefault()
     let link = ""
@@ -50,6 +54,8 @@ function Login() {
       console.log(error)
     })
   }
+  
+  const showClick = () => setShow(!show)
 
   function sendToRegister () {
     navigate('/ACType')

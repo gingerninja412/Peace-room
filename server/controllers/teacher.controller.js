@@ -70,10 +70,16 @@ teacherController.getSchools = async (req, res) => {
 
 teacherController.addClass = async (req, res) => {
   try {
+    const teacher = await prisma.teachers.findFirst({
+      where:{
+        email: req.user
+      }
+    })
     await prisma.teacherClasses.create({
       data: {
         Teacher: req.user,
-        Class: req.body.class
+        Class: req.body.class,
+        school: teacher.School
       }
     })
     res.status(200).send({status: 200})

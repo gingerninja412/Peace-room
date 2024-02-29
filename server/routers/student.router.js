@@ -7,6 +7,7 @@ studentRouter.post("/add", studentController.add)
 studentRouter.post("/login", studentController.login)
 
 studentRouter.get("/logout/:studentId", studentController.logout)
+studentRouter.get("/getClasses/:school", studentController.getClasses)
 
 module.exports = studentRouter
 
