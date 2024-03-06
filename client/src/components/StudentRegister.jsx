@@ -93,6 +93,7 @@ function StudentRegister() {
       })
       .catch((err) => {
         console.log(err);
+        setProblem(err.response.data.status);
       });
   }
 
@@ -105,10 +106,10 @@ function StudentRegister() {
         >
           <div className="flex justify-start items-center flex-col">
             <label className="font-Zeyada text-2xl">
-              Enter your first name
+              Enter a username
             </label>
             <Input
-              placeholder="eg John"
+              placeholder="eg John123"
               size="md"
               className="font-Zeyada"
               width="20rem"

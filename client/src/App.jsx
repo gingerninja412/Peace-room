@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setTeacher } from "./utils/slices/teacherSlice";
 import { setUser } from "./utils/slices/userSlice";
+import PeaceRoom from "./components/PeaceRoom";
 
 function App() {
   //hooks
@@ -45,7 +46,8 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/wellcomeVideo" element={<WelcomeVideo />} />
             <Route path="/lessonPlans" element={<LessonPlans />} />
-            <Route path="/teacherCenter" element={<TeacherCenter />} /> 
+            <Route path="/teacherCenter" element={<TeacherCenter />} />
+            <Route path="/peaceRoom" element={<PeaceRoom />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

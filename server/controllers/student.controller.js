@@ -7,15 +7,25 @@ const studentController = {}
 
 studentController.add = async (req, res) => {
   try {
-    await prisma.students.create({
-      data: {
-        name: req.body.name,
-        school: req.body.school,
-        class: req.body.class,
-        password: bcrypt.hashSync(req.body.password, 10)
+    let existsingUser = await prisma.students.findFirst({
+      where: {
+        name: req.body.name
       }
     })
-    res.status(200).send({status: true})
+
+    if(existsingUser == null) {
+      await prisma.students.create({
+        data: {
+          name: req.body.name,
+          school: req.body.school,
+          class: req.body.class,
+          password: bcrypt.hashSync(req.body.password, 10),
+        },
+      });
+      res.status(200).send({ status: true });
+    } else {
+      res.status(400).send({status: "user already exists"})
+    }
   } catch (error) {
     console.log(error)
   }
@@ -27,7 +37,18 @@ studentController.logout = async (req, res) => {
 
 studentController.login = async (req, res) => {
   try {
-    
+    const user = await prisma.students.findFirst({
+      where:{
+        name: req.body.username,
+      }
+    })
+    if(user == null) {
+      res.status(401).send({status: "incorrect details"})
+    } else if(bcrypt.compareSync(req.body.password, user.password)){
+      res.status(200).send({status: true})
+    } else {
+      res.status(401).send({status: "incorrect details"})
+    }
   } catch (error) {
     console.log(error)
   }
