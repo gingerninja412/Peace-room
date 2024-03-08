@@ -1,7 +1,5 @@
 import logo1 from "../assets/WorldECitizens.png";
 import logo2 from "../assets/GlobalSchoolAlliance.png";
-import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Mapper from "./Mapper";
 
 function PeaceRoom() {
