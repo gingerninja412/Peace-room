@@ -56,21 +56,32 @@ function SubmitNomination() {
           </div>
         </div>
         <div className="h-128 col-span-2 w-full col-start-2 border-sky-600 border-8 border-solid rounded-md flex flex-col items-center justify-center">
-          <form className="w-2/4 flex flex-col justify-start items-center gap-16" onSubmit={submitNominee}>
-            <Input
-              placeholder="Who are you nominating?"
-              className="font-Zeyada text-2xl"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <Textarea
-              placeholder="Write a small paragraph about why they should be nominated"
-              className="font-Zeyada text-2xl"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-              maxHeight={200}
-            />
-            <Button colorScheme="blue" type="submit">Submit</Button>
+          <form
+            className="w-2/4 flex flex-col justify-start items-center gap-16"
+            onSubmit={submitNominee}
+          >
+            <div className="flex flex-col justify-start items-center">
+              <h2 className="font-Zeyada text-2xl">Who do you want to add?</h2>
+              <Input
+                placeholder="Who are you nominating?"
+                className="font-Zeyada text-2xl"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col justify-start items-center">
+              <h2 className="font-Zeyada text-2xl">Why should they be in the peaceroom</h2>
+              <Textarea
+                placeholder="Write a small paragraph about why they should be nominated"
+                className="font-Zeyada text-2xl"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                maxHeight={200}
+              />
+            </div>
+            <Button colorScheme="blue" type="submit">
+              Submit
+            </Button>
           </form>
           {problem == "" ? null : (
             <h3 className="font-Zeyada text-2xl tracking-widest text-red-800">
