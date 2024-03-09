@@ -16,6 +16,7 @@ import { setTeacher } from "./utils/slices/teacherSlice";
 import { setUser } from "./utils/slices/userSlice";
 import PeaceRoom from "./components/PeaceRoom";
 import SubmitNomination from "./components/SubmitNomination";
+import axios from "axios";
 
 function App() {
   //hooks
@@ -26,6 +27,16 @@ function App() {
   const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
+    axios.get("http://localhost:3001/checkAuth", {
+      withCredentials: true
+    }).then(res => {
+
+    }).catch(err => {
+      if(window.location.href != "http://localhost:5173/") {
+        console.log(window.location.href)
+        window.location.replace("/")
+      }
+    })
     if(window.sessionStorage.getItem("teacher") != undefined) {
       dispatch(setTeacher(window.sessionStorage.getItem("teacher")))
     }
