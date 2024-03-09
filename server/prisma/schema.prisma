@@ -16,12 +16,11 @@ model Teachers {
 }
 
 model Students {
-  id          Int         @id @default(autoincrement())
-  name        String      @unique(map: "name")
-  school      String
-  class       String
-  password    String?
-  Nominations Nominations @relation(fields: [name], references: [author], onDelete: NoAction, onUpdate: NoAction, map: "fk_name")
+  id       Int     @id @default(autoincrement())
+  name     String
+  school   String
+  class    String
+  password String?
 }
 
 model Admins {
@@ -32,13 +31,12 @@ model Admins {
 }
 
 model Nominations {
-  id       Int       @id @default(autoincrement())
-  author   String    @unique(map: "author")
+  id       Int     @id @default(autoincrement())
+  author   String
   nominee  String
   content  String
   votes    Int
   approved Boolean
-  Students Students?
 }
 
 model TeacherClasses {

@@ -2,6 +2,7 @@ const {Strategy, ExtractJwt } = require('passport-jwt')
 const passportJWT = require('passport-jwt')
 const dotenv = require('dotenv')
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 
 dotenv.config()
 
@@ -19,6 +20,13 @@ function cookieExtractor(req) {
   {
     token = req.cookies.token;
   }
+  jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
+    if(err) {
+      console.log("not working")
+    } else if(decoded){
+      console.log(decoded)
+    }
+  })
   return token;
 };
 

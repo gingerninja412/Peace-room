@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client')
+const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
 const prisma = new PrismaClient()
@@ -45,6 +46,16 @@ studentController.login = async (req, res) => {
     if(user == null) {
       res.status(401).send({status: "incorrect details"})
     } else if(bcrypt.compareSync(req.body.password, user.password)){
+      const token = jwt.sign(
+        { username: user.name },
+        process.env.TOKENSECRET,
+        { expiresIn: "2h" }
+      );
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: "lax", // 'strict' || 'lax'
+        secure: false, // TODO Enforce HTTPS in production
+      });
       res.status(200).send({status: true})
     } else {
       res.status(401).send({status: "incorrect details"})
