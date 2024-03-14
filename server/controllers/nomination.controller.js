@@ -56,7 +56,16 @@ nominationController.approve = async (req, res) => {
 }
 
 nominationController.disapprove = async (req, res) => {
-
+  try {
+    await prisma.nominations.delete({
+      where: {
+        id: parseInt(req.params.nominationId)
+      }
+    })
+    res.status(200).send({status: true})
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 nominationController.getByClass = async (req, res) => {

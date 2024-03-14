@@ -4,6 +4,7 @@ import { SquarePen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ThumbsUp } from "lucide-react";
+import { ThumbsDown } from "lucide-react";
 
 import axios from "axios";
 
@@ -74,6 +75,23 @@ function TeacherCenter() {
     })
   }
 
+  function disapprove(id) {
+    axios.get(`http://localhost:3001/nomination/disapprove/${id}`, {
+      withCredentials: true
+    }).then(res => {
+      let newNoms = nominations.filter((item) => {
+        if (item.id == id) {
+          return false
+        } else {
+          return true
+        }
+      });
+      setNominations(newNoms);
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   return (
     <div className="grid grid-cols-6 h-screen">
       <div className="h-full border-r-solid border-r-8 border-r-black p-4 flex flex-col justify-start items-center bg-sky-600 gap-16">
@@ -112,7 +130,10 @@ function TeacherCenter() {
               <div className="font-Zeyada text-2xl">{item.content}</div>
               <div className="flex justify-around items-center w-full">
                 <h3 className="font-Zeyada text-2xl">by {item.author}</h3>
-                <ThumbsUp onClick={() => approve(item.id)} />
+                <div className="flex justify-center items-center gap-2">
+                  <ThumbsUp onClick={() => approve(item.id)} />
+                  <ThumbsDown onClick={() => disapprove(item.id)}/>
+                </div>
               </div>
             </div>
           );
