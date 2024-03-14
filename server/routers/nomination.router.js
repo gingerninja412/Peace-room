@@ -10,7 +10,6 @@ nominationRouter.get("/upvote/:nominationId", nominationController.upvote)
 nominationRouter.get("/approve/:nominationId", nominationController.approve)
 nominationRouter.get("/disapprove/:nominationId", nominationController.disapprove)
 nominationRouter.get("/getByClass/:class", nominationController.getByClass)
-
-nominationRouter.delete("/delete/:nominationId", nominationController.delete)
+nominationRouter.get("/getRandom", nominationController.getRandom)
 
 module.exports = nominationRouter

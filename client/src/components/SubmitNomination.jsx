@@ -48,8 +48,7 @@ function SubmitNomination() {
             <h2 className="font-Zeyada text-4xl">World E Citizens</h2>
           </div>
           <div className="flex justify-center items-center flex-col">
-            <h1 className="font-Zeyada text-3xl">Welcome to the Peace room</h1>
-            <h2 className="font-Zeyada text-3xl">Vrede! - Peace!</h2>
+            <h1 className="font-Zeyada text-3xl">Submit a nomination</h1>
           </div>
           <div className="flex justify-center items-center ">
             <img src={logo2} className="h-40" />

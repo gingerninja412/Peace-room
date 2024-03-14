@@ -12,7 +12,7 @@ const router = express.Router()
 router.use("/student", studentRouter)
 router.use("/teacher", teacherRouter)
 router.use("/admin", adminRouter)
-router.use("/nomination", nominationRouter)
+router.use("/nomination", passport.authenticate("jwt", {session: false}), nominationRouter)
 router.use("/resources", resoursesRouter)
 
 router.get("/checkAuth", passport.authenticate("jwt", {session: false}), checkAuth)

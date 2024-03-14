@@ -104,7 +104,7 @@ function TeacherCenter() {
           </ul>
         </div>
       </div>
-      <div className="col-span-5 h-full flex flex-col justify-start items-center p-4">
+      <div className="col-span-5 h-full flex flex-col justify-start items-center p-4 overflow-y-auto">
         {nominations.map((item) => {
           return (
             <div className="w-3/4 border-solid border-4 border-sky-600 rounded-md p-2 flex flex-col justify-start items-center">
@@ -112,7 +112,7 @@ function TeacherCenter() {
               <div className="font-Zeyada text-2xl">{item.content}</div>
               <div className="flex justify-around items-center w-full">
                 <h3 className="font-Zeyada text-2xl">by {item.author}</h3>
-                <ThumbsUp onClick={() => approve(item.id)}/>
+                <ThumbsUp onClick={() => approve(item.id)} />
               </div>
             </div>
           );

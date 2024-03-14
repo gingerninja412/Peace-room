@@ -17,6 +17,7 @@ import { setUser } from "./utils/slices/userSlice";
 import PeaceRoom from "./components/PeaceRoom";
 import SubmitNomination from "./components/SubmitNomination";
 import axios from "axios";
+import Voting from "./components/Voting";
 
 function App() {
   //hooks
@@ -61,6 +62,7 @@ function App() {
             <Route path="/teacherCenter" element={<TeacherCenter />} />
             <Route path="/peaceRoom" element={<PeaceRoom />} />
             <Route path="/table" element={<SubmitNomination />}/>
+            <Route path="/chair" element={<Voting />}/>
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

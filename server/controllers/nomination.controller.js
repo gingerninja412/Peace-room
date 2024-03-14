@@ -12,7 +12,7 @@ nominationController.add = async (req, res) => {
         content: req.body.reason,
         author: req.user,
         approved: false,
-        votes: 0
+        Votes: []
       }
     })
     res.status(200).send("working")
@@ -23,11 +23,20 @@ nominationController.add = async (req, res) => {
 }
 
 nominationController.upvote = async (req, res) => {
-
-}
-
-nominationController.delete = async (req, res) => {
-
+  try {
+    console.log(req.user)
+    await prisma.nominations.update({
+      where: {
+        id: parseInt(req.params.nominationId)
+      },
+      data: {
+        Votes: {push: req.user}
+      }
+    })
+    res.status(200).send("working")
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 nominationController.approve = async (req, res) => {
@@ -75,6 +84,25 @@ nominationController.getByClass = async (req, res) => {
     })
 
     res.status(200).send(nominations)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+nominationController.getRandom = async (req, res) => {
+  try {
+    const nominations = await prisma.nominations.findMany({
+      where: {
+        approved: true,
+        NOT: {
+          Votes: {has: req.user}
+        }
+      }
+    })
+    console.log();
+    res
+      .status(200)
+      .send(nominations[Math.round(Math.random() * (nominations.length - 1))]);
   } catch (error) {
     console.log(error)
   }

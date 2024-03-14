@@ -20,13 +20,6 @@ function cookieExtractor(req) {
   {
     token = req.cookies.token;
   }
-  jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
-    if(err) {
-      console.log("not working")
-    } else if(decoded){
-      console.log(decoded)
-    }
-  })
   return token;
 };
 
