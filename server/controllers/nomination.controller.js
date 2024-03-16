@@ -108,10 +108,23 @@ nominationController.getRandom = async (req, res) => {
         }
       }
     })
-    console.log();
     res
       .status(200)
       .send(nominations[Math.round(Math.random() * (nominations.length - 1))]);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+nominationController.getAlphabetical = async (req, res) => {
+  try {
+    const nominations = await prisma.nominations.findMany({
+      where:{
+        approved: true,
+        nominee: {startsWith: req.params.letter}
+      }
+    })
+    res.status(200).send(nominations)
   } catch (error) {
     console.log(error)
   }

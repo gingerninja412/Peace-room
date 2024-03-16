@@ -18,6 +18,7 @@ import PeaceRoom from "./components/PeaceRoom";
 import SubmitNomination from "./components/SubmitNomination";
 import axios from "axios";
 import Voting from "./components/Voting";
+import Bookshelf from "./components/Bookshelf";
 
 function App() {
   //hooks
@@ -63,6 +64,7 @@ function App() {
             <Route path="/peaceRoom" element={<PeaceRoom />} />
             <Route path="/table" element={<SubmitNomination />}/>
             <Route path="/chair" element={<Voting />}/>
+            <Route path="/bookshelf" element={<Bookshelf />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

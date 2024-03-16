@@ -11,5 +11,6 @@ nominationRouter.get("/approve/:nominationId", nominationController.approve)
 nominationRouter.get("/disapprove/:nominationId", nominationController.disapprove)
 nominationRouter.get("/getByClass/:class", nominationController.getByClass)
 nominationRouter.get("/getRandom", nominationController.getRandom)
+nominationRouter.get("/getAlphabetical/:letter", nominationController.getAlphabetical)
 
 module.exports = nominationRouter
