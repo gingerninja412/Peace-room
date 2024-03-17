@@ -19,6 +19,7 @@ import SubmitNomination from "./components/SubmitNomination";
 import axios from "axios";
 import Voting from "./components/Voting";
 import Bookshelf from "./components/Bookshelf";
+import Nomination from "./components/Nomination";
 
 function App() {
   //hooks
@@ -65,6 +66,7 @@ function App() {
             <Route path="/table" element={<SubmitNomination />}/>
             <Route path="/chair" element={<Voting />}/>
             <Route path="/bookshelf" element={<Bookshelf />} />
+            <Route path="/nomination/:nominationID" element={<Nomination />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

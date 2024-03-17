@@ -1,43 +1,42 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
-const nominationController = {}
+const nominationController = {};
 
 nominationController.add = async (req, res) => {
   try {
-    console.log(req.user)
+    console.log(req.user);
     await prisma.nominations.create({
       data: {
         nominee: req.body.name,
         content: req.body.reason,
         author: req.user,
         approved: false,
-        Votes: []
-      }
-    })
-    res.status(200).send("working")
+        Votes: [],
+      },
+    });
+    res.status(200).send("working");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
-}
+};
 
 nominationController.upvote = async (req, res) => {
   try {
-    console.log(req.user)
+    console.log(req.user);
     await prisma.nominations.update({
       where: {
-        id: parseInt(req.params.nominationId)
+        id: parseInt(req.params.nominationId),
       },
       data: {
-        Votes: {push: req.user}
-      }
-    })
-    res.status(200).send("working")
+        Votes: { push: req.user },
+      },
+    });
+    res.status(200).send("working");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 nominationController.approve = async (req, res) => {
   try {
@@ -46,38 +45,38 @@ nominationController.approve = async (req, res) => {
         id: parseInt(req.params.nominationId),
       },
       data: {
-        approved: true
-      }
+        approved: true,
+      },
     });
-    res.status(200).send({status: true})
+    res.status(200).send({ status: true });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 nominationController.disapprove = async (req, res) => {
   try {
     await prisma.nominations.delete({
       where: {
-        id: parseInt(req.params.nominationId)
-      }
-    })
-    res.status(200).send({status: true})
+        id: parseInt(req.params.nominationId),
+      },
+    });
+    res.status(200).send({ status: true });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 nominationController.getByClass = async (req, res) => {
   try {
     let classList = await prisma.students.findMany({
       where: {
-        class: req.params.class
+        class: req.params.class,
       },
       select: {
-        name: true
-      }
-    })
+        name: true,
+      },
+    });
 
     classList = classList.map((item) => {
       return item.name;
@@ -86,17 +85,17 @@ nominationController.getByClass = async (req, res) => {
     const nominations = await prisma.nominations.findMany({
       where: {
         author: {
-          in: classList
+          in: classList,
         },
-        approved: false
-      }
-    })
+        approved: false,
+      },
+    });
 
-    res.status(200).send(nominations)
+    res.status(200).send(nominations);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 nominationController.getRandom = async (req, res) => {
   try {
@@ -104,30 +103,43 @@ nominationController.getRandom = async (req, res) => {
       where: {
         approved: true,
         NOT: {
-          Votes: {has: req.user}
-        }
-      }
-    })
+          Votes: { has: req.user },
+        },
+      },
+    });
     res
       .status(200)
       .send(nominations[Math.round(Math.random() * (nominations.length - 1))]);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 nominationController.getAlphabetical = async (req, res) => {
   try {
     const nominations = await prisma.nominations.findMany({
-      where:{
+      where: {
         approved: true,
-        nominee: {startsWith: req.params.letter}
-      }
-    })
-    res.status(200).send(nominations)
+        nominee: { startsWith: req.params.letter },
+      },
+    });
+    res.status(200).send(nominations);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-module.exports = nominationController
+nominationController.getNomination = async (req, res) => {
+  try {
+    const nomination = await prisma.nominations.findUnique({
+      where: {
+        id: parseInt(req.params.ID),
+      },
+    });
+    res.status(200).send(nomination);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = nominationController;

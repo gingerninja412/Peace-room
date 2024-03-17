@@ -3,9 +3,11 @@ import logo2 from "../assets/GlobalSchoolAlliance.png";
 import { useState } from "react";
 import axios from "axios";
 import { Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 function Bookshelf() {
   const [nominations, setNominations] = useState([]);
+  const navigate = useNavigate()
 
   function getNominations(letter) {
     axios
@@ -209,7 +211,7 @@ function Bookshelf() {
             return (
               <div className="border-sky-600 border-4 border-solid flex items-center justify-center p-2 rounded-lg gap-2">
                 <h3>{item.nominee}</h3>
-                <Button colorScheme="blue">See more</Button>
+                <Button colorScheme="blue" onClick={() => navigate(`/nomination/${item.id}`)}>See more</Button>
               </div>
             );
           })}
